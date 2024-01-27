@@ -6,7 +6,7 @@ import "./sign-in.styles.scss";
 const SignIn = () => {
   const logGoogleUser = async () => {
     const { user } = await signInWithGooglePopUp();
-    crateUserDocumenFromAuth(user);
+    const userDocRef = await crateUserDocumenFromAuth(user);
   };
   return (
     <div>
