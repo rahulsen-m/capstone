@@ -24,7 +24,6 @@ const SignIn = () => {
   };
   const logGoogleRedirectUser = async () => {
     const { user } = await signInWithGoogleRedirect();
-    console.log({ user });
   };
   return (
     <div>
