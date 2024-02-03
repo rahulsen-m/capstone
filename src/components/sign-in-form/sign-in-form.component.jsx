@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   crateUserDocumentFromAuth,
   signInWithGooglePopUp,
+  signInAuthWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+import { UserContext } from "../../contexts/user.context.jsx";
 
 const defaultFormFields = {
   email: "",
@@ -16,6 +18,8 @@ const SignIn = () => {
   const [formFields, setFromFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  // get the context for setting the current user state
+  const { setCurrentUser } = useContext(UserContext);
   const resetFormFields = () => {
     setFromFields(defaultFormFields);
   };
@@ -34,6 +38,8 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
+      const { user } = await signInAuthWithEmailAndPassword(email, password);
+      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       switch (error.code) {
