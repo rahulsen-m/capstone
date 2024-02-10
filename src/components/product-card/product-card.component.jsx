@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../contexts/shoppingCart.context";
 
 const ProductCard = ({ product }) => {
-  console.log(product);
   const { name, imageUrl, price } = product;
   const { addItemToCard } = useContext(ShoppingCartContext);
 
